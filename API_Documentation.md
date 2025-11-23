@@ -29,7 +29,7 @@ The API accepts file uploads with optional query and company name fields:
 
 ## API Endpoints
 
-### 1. Upload a financial document
+### 1. Upload a Financial Document
 - **Endpoint:** `POST /analyze`
 - **Description:** Upload a document for analysis. Returns a unique `analysis_id`.
 - **Request:** `multipart/form-data`
@@ -39,32 +39,30 @@ The API accepts file uploads with optional query and company name fields:
   "analysis_id": "uuid-string",
   "status": "queued"
 }
-
 ```
-
-
 
 ### 2. Check Analysis Status
 
-Endpoint: GET /status/{analysis_id}
+- **Endpoint:** `GET /status/{analysis_id}`
+- **Description:** Check the processing status of a document.
 
-Description: Check the processing status of a document.
-
-Response:
-
+**Response Example:**
+```json
 {
   "status": "queued|processing|completed|failed",
   "error": "Error message if failed"
 }
 
-3. Get Analysis Results
+```
 
-Endpoint: GET /results/{analysis_id}
 
-Description: Retrieve the completed analysis results.
+### 3. Get Analysis Results
 
-Response:
+- **Endpoint:** `GET /results/{analysis_id}`
+- **Description:** Retrieve the completed analysis results.
 
+**Response Example:**
+```json
 {
   "report_preview": "First 10,000 chars of extracted text",
   "full_analysis": {
@@ -78,7 +76,3 @@ Response:
   "query": "Optional query",
   "extracted_characters": 12345
 }
-
-4. OpenAPI Documentation
-
-URL: http://localhost:8000/docs
