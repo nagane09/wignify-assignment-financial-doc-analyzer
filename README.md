@@ -22,8 +22,8 @@
 
 # 🟢 Financial Analyzer API
 
-A financial document analyzer using FastAPI, Celery, Redis, Postgres, and OpenAI GPT.  
-It can summarize PDFs/TXT/CSV financial reports, provide risks, and recommend BUY/HOLD/SELL.
+A financial document analyzer using **FastAPI**, **Celery**, **Redis**, **Postgres**, and **OpenAI GPT**.  
+It can summarize PDFs/TXT/CSV financial reports, provide risks, and recommend **BUY/HOLD/SELL**.
 
 ---
 
@@ -41,39 +41,10 @@ It can summarize PDFs/TXT/CSV financial reports, provide risks, and recommend BU
 
 ---
 
-
-4️⃣ Access the API
-
-OpenAPI docs: http://localhost:8000/docs
-
-Upload a financial document
-POST /analyze
-
-
-## Access the API
-- **OpenAPI docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
-- **Upload a financial document:** `POST /analyze`
-
-
-# File Upload Form
-
-Upload a PDF, TXT, or CSV file with optional query and company name.
-
-## Fields
-- **File** (required): PDF, TXT, or CSV file.
-- **Query** (optional): Related query text.
-- **Company Name** (optional): Name of the company.
-
-
-- **Upload a financial document:** `POST /analyze`
-- **Check status:** `GET /status/{analysis_id}`
-- **Get results:** `GET /results/{analysis_id}`
-
 ## 2️⃣ Set Up Environment Variables
 
 - Inside the project folder, create a `.env` file.  
 - Add the following:
-
 
 ```env
 # Database
@@ -90,5 +61,89 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 # FastAPI port
 PORT=8000
+```
 
+> ⚠️ Replace `your_openai_api_key_here` with your OpenAI key.
 
+---
+
+## 3️⃣ Build and Run with Docker Compose
+
+Open Command Prompt / Terminal in the project folder and run:
+
+```bash
+cd path\to\financial-analyzer
+docker-compose up --build
+```
+
+- This builds Docker images and starts all containers.  
+- **First-time run** may take a few minutes to download images.
+
+### Check Running Containers
+
+```bash
+docker ps
+```
+
+You should see:
+
+- `fastapi_api` → FastAPI app
+- `redis_broker` → Redis
+- `postgres_db` → Postgres
+- `celery_worker` → Celery worker
+
+### Stop All Services
+
+```bash
+docker-compose down
+```
+
+---
+
+## 4️⃣ Access the API
+
+### OpenAPI Docs
+
+- [http://localhost:8000/docs](http://localhost:8000/docs)
+
+### Upload a Financial Document
+
+```http
+POST /analyze
+```
+
+**File Upload Form:**
+
+- **File** (required): PDF, TXT, or CSV file  
+- **Query** (optional): Related query text  
+- **Company Name** (optional): Name of the company
+
+### Check Status
+
+```http
+GET /status/{analysis_id}
+```
+
+### Get Results
+
+```http
+GET /results/{analysis_id}
+```
+
+---
+
+## 5️⃣ Notes
+
+- Docker handles Python, Redis, and Postgres installations; no local setup needed.  
+- Ensure your `.env` file is properly configured before running.  
+- Place financial documents in the `data/` folder if needed for local testing.  
+- Logs can be viewed for a specific service:
+
+```bash
+docker-compose logs -f app     # FastAPI logs
+docker-compose logs -f worker  # Celery worker logs
+```
+
+---
+
+✅ Your Financial Analyzer API is now ready to use!
