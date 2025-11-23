@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis_broker
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: financial_analyzer
+      POSTGRES_USER: financial_user
+      POSTGRES_PASSWORD: vai
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: fastapi_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - postgres
+    env_file:
+      - .env
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+      - ./data:/app/data
+
+  worker:
+    build: .
+    container_name: celery_worker
+    depends_on:
+      - redis
+      - postgres
+    env_file:
+      - .env
+    command: celery -A main:celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+      - ./data:/app/data
+
+volumes:
+  redis_data:
+  postgres_data:

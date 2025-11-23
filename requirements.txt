@@ -1,0 +1,46 @@
+# Core dependencies
+fastapi==0.110.3
+uvicorn[standard]==0.29.0
+python-multipart==0.0.6
+python-dotenv==1.0.0
+
+# CrewAI core (Requires Python >= 3.10)
+crewai==0.130.0
+crewai-tools==0.47.1
+pydantic==2.7.1
+pydantic-settings==2.0.0
+
+# Crash fixes / Explicitly installed dependencies
+embedchain==0.1.114          # Fixes ModuleNotFoundError for embedchain import
+gptcache==0.1.44             # Needed by embedchain cache
+alembic==1.13.1  
+mako==1.3.2
+schema==0.7.5 
+pysbd==0.3.4
+docker==7.1.0
+beautifulsoup4==4.12.3  # <-- ADD THIS LINE (version 0.3.4 is usually stable)            # Needed by embedchain database migrations
+
+# LangChain / Google Stack (Pinned for compatibility)
+langchain==0.1.20
+langchain-core==0.1.52
+langchain-community==0.0.38
+langchain-openai==0.1.7
+
+langchain-google-genai==0.0.11 # <-- NEW: Add this specific integration package
+google-search-results==2.4.2
+
+# PDF processing packages
+pdfplumber==0.11.8
+pypdf==4.2.0
+openai==1.30.5
+# Database dependencies (PostgreSQL)
+SQLAlchemy==2.0.30
+psycopg2-binary==2.9.9
+
+# Queue and caching (Celery + Redis)
+celery==5.3.6
+redis==5.0.4
+
+# Scientific / Data packages
+numpy==1.26.4
+pandas==2.2.2
