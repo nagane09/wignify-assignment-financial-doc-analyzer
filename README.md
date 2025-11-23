@@ -64,7 +64,29 @@ OPENAI_API_KEY=your_openai_api_key_here
 PORT=8000
 
 
+4️⃣ Access the API
+
+OpenAPI docs: http://localhost:8000/docs
+
+Upload a financial document
+POST /analyze
 
 
-"# wignify-assignment-financial-doc-analyzer" 
-"# wignify-assignment-financial-doc-analyzer" 
+## Access the API
+- **OpenAPI docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Upload a financial document:** `POST /analyze`
+
+
+# File Upload Form
+
+Upload a PDF, TXT, or CSV file with optional query and company name.
+
+## Fields
+- **File** (required): PDF, TXT, or CSV file.
+- **Query** (optional): Related query text.
+- **Company Name** (optional): Name of the company.
+
+
+- **Upload a financial document:** `POST /analyze`
+- **Check status:** `GET /status/{analysis_id}`
+- **Get results:** `GET /results/{analysis_id}`
