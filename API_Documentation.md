@@ -2,16 +2,6 @@
 
 A FastAPI application that allows uploading financial documents (PDF, TXT, CSV) for automated analysis using OpenAI GPT. Analysis is processed asynchronously via Celery, and results can be retrieved via API endpoints.
 
----
-
-## Table of Contents
-- [Form Fields](#form-fields)
-- [API Endpoints](#api-endpoints)
-- [Database](#database)
-- [Setup](#setup)
-- [Usage Examples](#usage-examples)
-- [Celery Task](#celery-task)
-- [Notes](#notes)
 
 ---
 
