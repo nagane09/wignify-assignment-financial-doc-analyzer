@@ -41,28 +41,6 @@ It can summarize PDFs/TXT/CSV financial reports, provide risks, and recommend BU
 
 ---
 
-## 2️⃣ Set Up Environment Variables
-
-- Inside the project folder, create a `.env` file.  
-- Add the following:
-
-
-```env
-# Database
-POSTGRES_DB=financial_analyzer
-POSTGRES_USER=financial_user
-POSTGRES_PASSWORD=vai
-DATABASE_URL=postgresql://financial_user:vai@postgres:5432/financial_analyzer
-
-# Redis
-REDIS_URL=redis://redis:6379/0
-
-# OpenAI API key
-OPENAI_API_KEY=your_openai_api_key_here
-
-# FastAPI port
-PORT=8000
-
 
 4️⃣ Access the API
 
@@ -90,3 +68,27 @@ Upload a PDF, TXT, or CSV file with optional query and company name.
 - **Upload a financial document:** `POST /analyze`
 - **Check status:** `GET /status/{analysis_id}`
 - **Get results:** `GET /results/{analysis_id}`
+
+## 2️⃣ Set Up Environment Variables
+
+- Inside the project folder, create a `.env` file.  
+- Add the following:
+
+
+```env
+# Database
+POSTGRES_DB=financial_analyzer
+POSTGRES_USER=financial_user
+POSTGRES_PASSWORD=vai
+DATABASE_URL=postgresql://financial_user:vai@postgres:5432/financial_analyzer
+
+# Redis
+REDIS_URL=redis://redis:6379/0
+
+# OpenAI API key
+OPENAI_API_KEY=your_openai_api_key_here
+
+# FastAPI port
+PORT=8000
+
+
